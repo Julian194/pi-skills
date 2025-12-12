@@ -12,23 +12,23 @@ Headless web search and content extraction using Brave Search. No browser requir
 Run once before first use:
 
 ```bash
-cd {baseDir}
+cd {baseDir}/brave-search
 npm install
 ```
 
 ## Search
 
 ```bash
-{baseDir}/search.js "query"                    # Basic search (5 results)
-{baseDir}/search.js "query" -n 10              # More results
-{baseDir}/search.js "query" --content          # Include page content as markdown
-{baseDir}/search.js "query" -n 3 --content     # Combined
+{baseDir}/brave-search/search.js "query"                    # Basic search (5 results)
+{baseDir}/brave-search/search.js "query" -n 10              # More results
+{baseDir}/brave-search/search.js "query" --content          # Include page content as markdown
+{baseDir}/brave-search/search.js "query" -n 3 --content     # Combined
 ```
 
 ## Extract Page Content
 
 ```bash
-{baseDir}/content.js https://example.com/article
+{baseDir}/brave-search/content.js https://example.com/article
 ```
 
 Fetches a URL and extracts readable content as markdown.
