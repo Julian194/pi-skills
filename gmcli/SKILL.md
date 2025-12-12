@@ -28,12 +28,17 @@ npm install -g @mariozechner/gmcli
 
 ### Configure gmcli
 
+First check if already configured:
 ```bash
-gmcli accounts credentials ~/path/to/credentials.json
-gmcli accounts add <email> [--manual]
+gmcli accounts list
 ```
 
-Use `--manual` for browserless OAuth flow.
+If no accounts, guide the user through setup:
+1. Ask if they have a Google Cloud project with Gmail API enabled
+2. If not, walk them through the Google Cloud Console steps above
+3. Have them download the OAuth credentials JSON
+4. Run: `gmcli accounts credentials ~/path/to/credentials.json`
+5. Run: `gmcli accounts add <email>` (use `--manual` for browserless OAuth)
 
 ## Usage
 

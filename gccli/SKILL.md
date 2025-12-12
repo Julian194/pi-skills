@@ -28,12 +28,17 @@ npm install -g @mariozechner/gccli
 
 ### Configure gccli
 
+First check if already configured:
 ```bash
-gccli accounts credentials ~/path/to/credentials.json
-gccli accounts add <email> [--manual]
+gccli accounts list
 ```
 
-Use `--manual` for browserless OAuth flow.
+If no accounts, guide the user through setup:
+1. Ask if they have a Google Cloud project with Calendar API enabled
+2. If not, walk them through the Google Cloud Console steps above
+3. Have them download the OAuth credentials JSON
+4. Run: `gccli accounts credentials ~/path/to/credentials.json`
+5. Run: `gccli accounts add <email>` (use `--manual` for browserless OAuth)
 
 ## Usage
 
