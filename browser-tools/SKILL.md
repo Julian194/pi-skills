@@ -16,14 +16,17 @@ cd {baseDir}/browser-tools
 npm install
 ```
 
-## Start Chrome
+## Auto-Start
+
+All tools auto-start Chrome with the user's Default profile if it's not already running. No need to call `browser-start.js` manually.
+
+Chrome launches on `:9222` with only the Default profile copied (no profile picker dialog).
+
+To start with a fresh profile (no cookies):
 
 ```bash
-{baseDir}/browser-start.js              # Fresh profile
-{baseDir}/browser-start.js --profile    # Copy user's profile (cookies, logins)
+{baseDir}/browser-start.js --no-profile
 ```
-
-Launch Chrome with remote debugging on `:9222`. Use `--profile` to preserve user's authentication state.
 
 ## Navigate
 
