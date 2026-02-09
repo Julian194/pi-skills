@@ -5,7 +5,7 @@ description: Interactive browser automation via Chrome DevTools Protocol. Use wh
 
 # Browser Tools
 
-Chrome DevTools Protocol tools for agent-assisted web automation. These tools connect to Chrome running on `:9222` with remote debugging enabled.
+Chrome DevTools Protocol tools for agent-assisted web automation. All tools auto-connect to Chrome on `:9222`, **auto-starting it if not running**.
 
 ## Setup
 
@@ -16,13 +16,14 @@ cd {baseDir}/browser-tools
 npm install
 ```
 
-## Auto-Start
+## Key Behavior
 
-All tools auto-start Chrome with the user's Default profile if it's not already running. No need to call `browser-start.js` manually.
+- **No manual start needed.** Every tool auto-launches Chrome with the user's Default profile (cookies, logins preserved) if Chrome isn't already running on `:9222`.
+- **No profile picker.** Only the Default Chrome profile is synced — no multi-profile dialog.
+- **Reuses running instance.** If Chrome is already running on `:9222`, tools connect instantly.
+- **Never call `browser-start.js` before other tools.** Just use `browser-nav.js`, `browser-screenshot.js`, etc. directly.
 
-Chrome launches on `:9222` with only the Default profile copied (no profile picker dialog).
-
-To start with a fresh profile (no cookies):
+To explicitly start with a fresh profile (no cookies/logins):
 
 ```bash
 {baseDir}/browser-start.js --no-profile
