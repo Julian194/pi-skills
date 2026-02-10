@@ -53,9 +53,25 @@ if (!query) {
 	process.exit(1);
 }
 
-const apiKey = process.env.BRAVE_API_KEY;
+import { readFileSync, existsSync } from "fs";
+import { join } from "path";
+import { homedir } from "os";
+
+function loadApiKey() {
+	if (process.env.BRAVE_API_KEY) return process.env.BRAVE_API_KEY;
+	const secretsPath = join(homedir(), ".brave-search", "secrets.json");
+	if (existsSync(secretsPath)) {
+		try {
+			const secrets = JSON.parse(readFileSync(secretsPath, "utf8"));
+			if (secrets.apiKey) return secrets.apiKey;
+		} catch {}
+	}
+	return null;
+}
+
+const apiKey = loadApiKey();
 if (!apiKey) {
-	console.error("Error: BRAVE_API_KEY environment variable is required.");
+	console.error("Error: BRAVE_API_KEY env var or ~/.brave-search/secrets.json required.");
 	console.error("Get your API key at: https://api-dashboard.search.brave.com/app/keys");
 	process.exit(1);
 }
